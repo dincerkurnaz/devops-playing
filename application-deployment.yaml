@@ -1,0 +1,68 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.12.0 (0ab07be)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: application
+  name: application
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: application
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_DATABASE
+              name: application-env
+        - name: MYSQL_INSTANCE_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_INSTANCE_NAME
+              name: application-env
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_PASSWORD
+              name: application-env
+        - name: MYSQL_PORT_3306_TCP_ADDR
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_PORT_3306_TCP_ADDR
+              name: application-env
+        - name: MYSQL_PORT_3306_TCP_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_PORT_3306_TCP_PORT
+              name: application-env
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_ROOT_PASSWORD
+              name: application-env
+        - name: MYSQL_USER
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_USER
+              name: application-env
+        - name: MYSQL_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              key: MYSQL_USERNAME
+              name: application-env
+        image: application
+        name: application
+        ports:
+        - containerPort: 3000
+        resources: {}
+      restartPolicy: Always
+status: {}
