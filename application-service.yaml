@@ -3,6 +3,7 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.service.type: LoadBalancer
     kompose.version: 1.12.0 (0ab07be)
   creationTimestamp: null
   labels:
@@ -15,5 +16,6 @@ spec:
     targetPort: 3000
   selector:
     io.kompose.service: application
+  type: LoadBalancer
 status:
   loadBalancer: {}

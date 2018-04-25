@@ -10,7 +10,7 @@ services:
      depends_on:
        - mysql
      build: .
-     image: dincerkurnaz/dincer
+     image: docker.io/dincerkurnaz/dincer
      ports:
        - "3000:3000"
      restart: always

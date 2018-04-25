@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.service.type: LoadBalancer
     kompose.version: 1.12.0 (0ab07be)
   creationTimestamp: null
   labels:
@@ -59,7 +60,7 @@ spec:
             configMapKeyRef:
               key: MYSQL_USERNAME
               name: application-env
-        image: application
+        image: docker.io/dincerkurnaz/dincer
         name: application
         ports:
         - containerPort: 3000
