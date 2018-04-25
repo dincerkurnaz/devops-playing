@@ -10,8 +10,11 @@ services:
      depends_on:
        - mysql
      build: .
+     image: dincerkurnaz/dincer
      ports:
        - "3000:3000"
      restart: always
      env_file:
        - .env
+     labels:
+       kompose.service.type: LoadBalancer
