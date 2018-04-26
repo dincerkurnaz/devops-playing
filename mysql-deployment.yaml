@@ -19,6 +19,11 @@ spec:
     spec:
       containers:
       - env:
+        - name: GET_HOSTS_FROM
+          valueFrom:
+            configMapKeyRef:
+              key: GET_HOSTS_FROM
+              name: mysql-env
         - name: MYSQL_DATABASE
           valueFrom:
             configMapKeyRef:
@@ -61,6 +66,8 @@ spec:
               name: mysql-env
         image: mysql:5.7
         name: mysql
+        ports:
+        - containerPort: 3306
         resources: {}
       restartPolicy: Always
 status: {}

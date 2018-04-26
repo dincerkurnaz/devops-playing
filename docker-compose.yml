@@ -3,12 +3,14 @@ version: '3'
 services:
    mysql:
      image: mysql:5.7
+     ports:
+     - "3306:3306"
      restart: always
      env_file:
        - .env
    application:
      depends_on:
-       - mysql
+     - mysql
      build: .
      image: docker.io/dincerkurnaz/dincer
      ports:
@@ -17,4 +19,4 @@ services:
      env_file:
        - .env
      labels:
-       kompose.service.type: LoadBalancer
+       kompose.service.type: NodePort

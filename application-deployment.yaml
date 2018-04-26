@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: kompose convert -f docker-compose.yml
-    kompose.service.type: LoadBalancer
+    kompose.service.type: NodePort
     kompose.version: 1.12.0 (0ab07be)
   creationTimestamp: null
   labels:
@@ -20,6 +20,11 @@ spec:
     spec:
       containers:
       - env:
+        - name: GET_HOSTS_FROM
+          valueFrom:
+            configMapKeyRef:
+              key: GET_HOSTS_FROM
+              name: application-env
         - name: MYSQL_DATABASE
           valueFrom:
             configMapKeyRef:
